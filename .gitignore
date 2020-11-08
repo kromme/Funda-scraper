@@ -1,0 +1,7 @@
+chromedriver.exe
+.ipynb_checkpoints/
+*.ipynb
+*.csv
+*.log
+_*
+geckodriver.log
