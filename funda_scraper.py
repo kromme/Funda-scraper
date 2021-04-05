@@ -37,7 +37,7 @@ class FundaScraper(object):
                  telegram_chat_id : str,
                  webdriver_path : str = 'geckodriver.exe',
                  output_path : str = 'db.csv',
-                 use_proxy : bool = True):
+                 use_proxy : bool = False):
         self.funda_url = funda_url
         self.webdriver_path = webdriver_path
         self.output_path = output_path
@@ -54,7 +54,8 @@ class FundaScraper(object):
         
         # set driver
         self.DRIVER = self.get_driver()
-        self.find_proxy()
+        if self.use_proxy:
+            self.find_proxy()
         
         self.XPATH_HOUSES = 'search-result-header'
         self.XPATH_HOUSE = " .//a[@data-object-url-tracking='resultlist']"
@@ -117,7 +118,7 @@ class FundaScraper(object):
         self.logger.info(f'Profile set')
 
     def _change_proxy(self, proxyNo : int = 0):
-        if self.proxies == []:
+        if len(self.proxies) == 0:
             self._get_proxy_list()
         
         # get next proxy values
@@ -247,5 +248,4 @@ class FundaScraper(object):
                 f.write('%s\n' % url)
 
         self.DRIVER.close()
-        
         
