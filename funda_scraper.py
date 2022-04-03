@@ -214,7 +214,7 @@ class FundaScraper(object):
         """
         try:
             bot = telegram.Bot(token=self.telegram_token)
-            text = 'I found a new house on Funda for you: {url}'
+            text = f'I found a new house on Funda for you: {url}'
             bot.send_message(chat_id=self.telegram_chat_id, text = text )
             self.logger.info(f'Message succesfully send to Telegram')
         except Exception as e:
